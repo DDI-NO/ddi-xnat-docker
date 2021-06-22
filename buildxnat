@@ -1,3 +1,5 @@
-#!/usr/bin/sh
 XNAT_VERSION=1.8.2
-docker build -t ddi/xnat:$XNAT_VERSION --build-arg XNAT_VERSION=$XNAT_VERSION
+IMG=ddi/xnat:$XNAT_VERSION
+docker build . -t $IMG --build-arg XNAT_VERSION=$XNAT_VERSION
+echo "saving to" ddi_xnat_${XNAT_VERSION}.tar.gz
+docker save $IMG | gzip > ddi_xnat_${XNAT_VERSION}.tar.gz
