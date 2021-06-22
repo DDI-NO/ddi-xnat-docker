@@ -1,0 +1,3 @@
+#!/usr/bin/sh
+XNAT_VERSION=1.8.2
+docker build -t ddi/xnat:$XNAT_VERSION --build-arg XNAT_VERSION=$XNAT_VERSION
