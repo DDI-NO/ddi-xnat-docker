@@ -1,5 +1,10 @@
 XNAT_VERSION=1.8.2
 IMG=ddi/xnat:$XNAT_VERSION
+WAR=xnat-web-${XNAT_VERSION}.war
+if [ ! -f "$WAR" ]; then
+  echo "downloading $WAR"
+    wget --no-verbose --output-document=xnat-web-${XNAT_VERSION}.war https://api.bitbucket.org/2.0/repositories/xnatdev/xnat-web/downloads/xnat-web-${XNAT_VERSION}.war
+fi
 docker build . -t $IMG --build-arg XNAT_VERSION=$XNAT_VERSION
 echo "saving to" ddi_xnat_${XNAT_VERSION}.tar.gz
 docker save $IMG | gzip > ddi_xnat_${XNAT_VERSION}.tar.gz
