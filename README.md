@@ -8,9 +8,26 @@ Until the need of using docker-compose, this instance is configured as follows:
 
 Build the image executing the `buildxnat` script, where the specific `XNAT_VERSION` is set.
 
-After loading the built image in TSD, in order to run use the script `/tsd/p96/data/no-backup/scripts/bin/runxnatdocker`:
-
-Once the container is working start/stop it with the regular docker command.
+## Managing XNAT docker instance
+In TSD, docker runs in the machine *p96-docker-l*. The first step is to ssh:
 ```bash
-docker start xnat
+ssh p96-docker-l
+```
+
+### First deployment
+The built image must be placed in `durable/xnat/docker images`, so p96-tsdfx user can acces it. Then load the image with the command:
+```bash
+sudo -u p96-tsdfx /usr/bin/docker load -i /tsd/p96/data/durable/xnat/docker images/ddi_xnat_xxx.tar.gz
+```
+After loading the image, in order to do the first run, use the script `/tsd/p96/data/no-backup/scripts/bin/runxnatdocker`:
+
+### Deployed container
+
+Once the container is working, call start/stop with the regular docker command.
+```bash
+sudo -u p96-tsdfx /usr/bin/docker start xnat
+```
+To inspect the live tomcat output from the container run
+```bash
+sudo -u p96-tsdfx /usr/bin/docker logs -f xnat
 ```
