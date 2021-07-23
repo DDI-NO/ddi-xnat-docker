@@ -1,4 +1,4 @@
-XNAT_VERSION=1.8.2
+XNAT_VERSION=1.8.2.2
 IMG=ddi/xnat:$XNAT_VERSION
 WAR=xnat-web-${XNAT_VERSION}.war
 if [ ! -f "$WAR" ]; then
